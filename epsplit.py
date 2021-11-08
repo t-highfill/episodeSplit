@@ -48,7 +48,8 @@ def epsplit(fnames, format=DEFAULT_FORMAT, startnum=DEFAULT_STARTNUM, length=DEF
             outfile = format.format(episode_num=episode_num,
                                     ext=file_ext, title=title)
             subprocess.run(["ffmpeg", "-ss", start, "-to", end, "-i",
-                            fname, "-map", "0", "-codec", "copy", outfile],
+                            fname, "-map", "0", "-codec", "copy",
+                            "-max_interleave_delta", "0", outfile],
                             check=True)
             ch_idx += length
             episode_num += 1
